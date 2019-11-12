@@ -1,0 +1,33 @@
+esphome:
+  name: shelly1_kitchen
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: "ssid_name"
+  password: "password"
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO5
+    name: "Shelly Switch"
+    on_state:
+      then:
+       - switch.toggle: relay
+  - platform: status
+    name: "Shelly status"
+    
+switch:
+  - platform: gpio
+    name: "Shelly Relay"
+    pin: GPIO4    
+    id: 'relay'
